@@ -1,17 +1,16 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Classes from "./pages/Classes";
 import Schedule from "./pages/Schedule";
 import Price from "./pages/Price";
 import Account from "./pages/Account";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Header from "./components/Header";     
 
 export default function App() {
- 
   return (
     <Router>
-      {/* Global background (image + beige tint) */}
+      {/* Background image and overlay */}
       <div
         className="fixed inset-0 -z-10 bg-cover bg-center"
         style={{
@@ -21,14 +20,11 @@ export default function App() {
       />
       <div className="fixed inset-0 -z-10 bg-[#d1b7a7]/70" />
 
-      {/* Top navigation */}
-      
-      {/* Shared header (handles EN/FR toggle & translated nav labels) */}
+      {/* Header */}
       <Header />
 
-    
       {/* Page content */}
-      <main className="min-h-[calc(100vh-200px)]"> 
+      <main className="min-h-[calc(100vh-200px)]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/classes" element={<Classes />} />
@@ -38,7 +34,7 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* Shared footer */}
+      {/* Footer */}
       <Footer />
     </Router>
   );

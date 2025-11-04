@@ -35,10 +35,10 @@ export default function Footer() {
           <div>
             <h4 className="uppercase tracking-wide text-white/70">email us</h4>
             <a
-              href="mailto:hello@azustudio.com"
+              href="mailto:hinfo@azustudio.ca"
               className="block mt-2 text-white/90 hover:text-[#d1b7a7] transition"
             >
-              hello@azustudio.com
+              info@azustudio.ca
             </a>
           </div>
           
