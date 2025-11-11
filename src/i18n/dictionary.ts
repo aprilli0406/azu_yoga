@@ -2,7 +2,7 @@ export type Locale = "en" | "fr";
 
 export const dict = {
   en: {
-    nav: { home: "Home", classes: "Classes", pricing: "Pricing", contact: "Contact" },
+    nav: { home: "Home", classes: "Classes", schedule: "Schedule",  pricing: "Pricing", account: "My Account" },
     hero: { title: "Azu Yoga & Pilates", subtitle: "Move. Breathe. Restore." },
     classes: {
       heading: "our classes",
@@ -27,7 +27,7 @@ export const dict = {
     footer: { rights: "All rights reserved." }
   },
   fr: {
-    nav: { home: "Accueil", classes: "Cours", pricing: "Tarifs", contact: "Contact" },
+    nav: { home: "Accueil", classes: "Cours", schedule: "Horaire", pricing: "Tarifs", account: "Mon Compte"},
     hero: { title: "Azu Yoga & Pilates", subtitle: "Bouger. Respirer. Se restaurer." },
     classes: {
       heading: "nos cours",

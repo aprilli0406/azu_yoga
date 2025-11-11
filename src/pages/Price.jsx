@@ -1,7 +1,81 @@
 export default function Price() {
+  const DISCOUNT = 0.25; // 20% off opening discount
+  const PUNCHPASS_URL = "https://app.punchpass.com/org/20290/passes";
+
+  const packages = [
+   
+    { name: "5 + 1 Mat Class Package", classes: 6, price: 150, discount: true },
+    { name: "10 + 1 Mat Class Package", classes: 11, price: 240, discount: true },
+    { name: "20 + 1 Mat Class Package", classes: 21, price: 390, discount: true },
+    { name: "30 + 1 Mat Class Package", classes: 31, price: 490, discount: true },
+    { name: "40 + 1 Mat Class Package", classes: 41, price: 545, discount: true },
+  ];
+
+  const formatCAD = (n) =>
+    new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(n);
+
   return (
-    <div className="min-h-screen bg-white text-gray-800 grid place-items-center">
-      <h2 className="text-3xl tracking-widest">PRICE COMING SOON</h2>
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center py-10">
+      <h2 className="text-3xl tracking-widest mb-2">CLASS PACKAGES</h2>
+      <p className="text-gray-600 mb-8 text-center">
+        Opening discount: <span className="font-semibold">25% off all packages + 1 Extra Class</span> — promised lowest price!
+      </p>
+      <p className="text-gray-600 mb-8 text-center">
+        Promote Code: <span className="font-semibold">OPEN2025</span> 
+      </p>
+
+      <div className="w-full max-w-5xl px-4 overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200 rounded-xl text-sm md:text-base">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-3 text-left">Class Package</th>
+              <th className="px-4 py-3 text-left">Regular Price</th>
+              <th className="px-4 py-3 text-left">Price per Class</th>
+              <th className="px-4 py-3 text-left">25% off Price</th>
+              <th className="px-4 py-3 text-left">25% Price per Class</th>
+            </tr>
+          </thead>
+          <tbody>
+            {packages.map((pkg, i) => {
+              const costPer = pkg.price / (pkg.classes-1);
+              const discounted = pkg.discount ? pkg.price * (1 - DISCOUNT) : pkg.price;
+              const discountedPer = discounted / pkg.classes;
+
+              return (
+                <tr
+                  key={pkg.name}
+                  className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                >
+                  <td className="px-4 py-3 font-medium">{pkg.name}</td>
+                  <td className="px-4 py-3">{formatCAD(pkg.price)}</td>
+                  <td className="px-4 py-3">{formatCAD(costPer)}</td>
+                  <td className="px-4 py-3 text-[#5a3d36] font-semibold">
+                    {formatCAD(discounted)}
+                  </td>
+                  <td className="px-4 py-3 text-[#5a3d36]">{formatCAD(discountedPer)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <a
+        href={PUNCHPASS_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-10 inline-block bg-black text-white text-sm font-semibold tracking-widest px-8 py-3 rounded-xl hover:opacity-90"
+      >
+        BUY PACKAGES
+      </a>
+
+      <p className="mt-4 text-sm text-gray-500 px-4 text-center">
+        Please note: all packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
+        <strong>valid for 2 years</strong>.
+      </p>
     </div>
   );
 }

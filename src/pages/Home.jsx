@@ -15,12 +15,14 @@ export default function Home() {
                  //   color: "white",                  // keeps text filled white
                 //}}
                 >
-                Ouvert Bientôt en Novembre
+                Ouverture Le 22 Novembre
             </p>
             <p className="mt-2 text-xl md:text-2xl text-white/70 tracking-widest">
-                Open Soon in November
+                Opening on November 22nd
             </p>
         </div>
+
+       
 
     </main>
 

@@ -34,13 +34,13 @@ export default function Header() {
               <span className="uppercase">{t("nav.classes")}</span> {/* CHANGED */}
             </NavLink>
             <NavLink to="/schedule" className={(p) => `${linkItemClass} ${linkClass(p)}`}>
-              <span className="uppercase">{t("nav.pricing") /* or "schedule" if you add it */}</span> {/* CHANGED */}
+              <span className="uppercase">{t("nav.schedule")}</span> {/* CHANGED */}
             </NavLink>
             <NavLink to="/price" className={(p) => `${linkItemClass} ${linkClass(p)}`}>
               <span className="uppercase">{t("nav.pricing")}</span> {/* CHANGED */}
             </NavLink>
             <NavLink to="/account" className={(p) => `${linkItemClass} ${linkClass(p)}`}>
-              <span className="uppercase">{t("nav.contact") /* or add nav.account key */}</span> {/* CHANGED */}
+              <span className="uppercase">{t("nav.account") /* or add nav.account key */}</span> {/* CHANGED */}
             </NavLink>
           </div>
         </div>
