@@ -24,7 +24,7 @@ export default function Header() {
           AZU&nbsp;STUDIO
         </Link>
 
-        <div className="hidden md:flex flex-1 justify-center">
+        <div className="flex flex-1 justify-center md:justify-center"> 
           <div className="flex w-full max-w-5xl text-sm font-bold tracking-widest">
             {/* CHANGED: use translated labels + keep uppercase via class */}
             <NavLink to="/" end className={(p) => `${linkItemClass} ${linkClass(p)}`}>
