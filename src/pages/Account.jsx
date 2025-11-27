@@ -1,17 +1,18 @@
 export default function Account() {
   return (
-    <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center py-10">
-      <h2 className="text-3xl tracking-widest mb-6">YOUR RESERVATION</h2>
-
-      <div className="w-full max-w-4xl px-4">
-        <iframe name="frame2" src="https://app.punchpass.com/org/20290/timeslot?embed=true" 
-                height="700" 
-                width="100%" 
-                frameborder="0" 
-                allowfullscreen>
-
-                </iframe>
-      </div>
+    <div 
+      className="min-h-screen bg-white text-gray-800 flex items-center justify-center" 
+      // ⭐ CHANGED: fully center content vertically + horizontally
+    >
+      <a
+        href="https://app.punchpass.com/account/sign_in" // ⭐ CHANGED
+        target="_blank"
+        rel="noreferrer"
+        className="bg-black text-white text-lg font-semibold tracking-widest px-10 py-4 rounded-xl hover:opacity-90" 
+        // ⭐ CHANGED: styled login button
+      >
+        LOGIN TO YOUR ACCOUNT
+      </a>
     </div>
   );
 }
