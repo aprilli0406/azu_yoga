@@ -23,7 +23,13 @@ export default function Price() {
       <h2 className="text-3xl tracking-widest mb-2">CLASS PACKAGES</h2>
 
       <p className="text-gray-600 mb-4 text-center">
-        Opening discount: <span className="font-semibold">25% off all packages + 1 Extra Class</span> — promised lowest price!
+        Opening discount: 
+        <span className="font-semibold">
+          25% off all packages + 1 Extra Class
+        </span>
+      </p>
+      <p className="text-gray-600 mb-4 text-center font-semibold">
+        promised lowest price! Expires December 22!
       </p>
 
       {/* ⭐ CHANGED — added note: promo code NOT applied to intro class */}
@@ -88,7 +94,7 @@ export default function Price() {
       </p>
 
       {/* ⭐ CHANGED — added Gift Card announcement */}
-      <p className="mt-6 text-base text-gray-700 font-medium">🎁 Gift Cards Coming Soon — a perfect present for yoga & mat Pilates lovers!
+      <p className="mt-6 text-base text-gray-700 font-medium">🎁 Shop Gift Cards? a perfect present for yoga & mat Pilates lovers! (Promo Code eligible)
      </p> {/* ⭐ CHANGED */}
     </div>
   );
