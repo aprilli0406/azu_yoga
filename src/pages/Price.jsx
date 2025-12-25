@@ -1,5 +1,5 @@
 export default function Price() {
-  const DISCOUNT = 0.25;
+  const DISCOUNT = 0.2;
   const PUNCHPASS_URL = "https://app.punchpass.com/org/20290/passes";
 
   // ⭐ CHANGED — added Intro Class (no discount)
@@ -20,22 +20,31 @@ export default function Price() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center py-10">
-      <h2 className="text-3xl tracking-widest mb-2">CLASS PACKAGES</h2>
+      <h2 className="text-3xl tracking-widest mb-2">MAT CLASS PACKAGES</h2>
 
       <p className="text-gray-600 mb-4 text-center">
-        Opening discount: 
+        Missed the opening promo?
+
         <span className="font-semibold">
-          25% off all packages + 1 Extra Class
+         Don’t miss this one — Christmas & New Year discounts are here! ✨
         </span>
       </p>
       <p className="text-gray-600 mb-4 text-center font-semibold">
-        promised lowest price! Expires December 22!
+         20% off all packages + 1 Extra Class Valid until January 2nd, 2026
       </p>
 
       {/* ⭐ CHANGED — added note: promo code NOT applied to intro class */}
-      <p className="text-gray-600 mb-8 text-center">
-        Promo Code: <span className="font-semibold">OPEN2025</span> (not valid for Intro Class) {/* ⭐ CHANGED */}
+      
+      <p className="text-gray-600 mb-10 text-center">
+        Promo Code:{" "}
+        <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
+          NEW2026
+        </span>{" "}
+        <span className="text-sm text-gray-500">
+        (not valid for Intro Class)
+        </span>
       </p>
+
 
       <div className="w-full max-w-5xl px-4 overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-xl text-sm md:text-base">
@@ -44,8 +53,8 @@ export default function Price() {
               <th className="px-4 py-3 text-left">Class Package</th>
               <th className="px-4 py-3 text-left">Regular Price</th>
               <th className="px-4 py-3 text-left">Price per Class</th>
-              <th className="px-4 py-3 text-left">25% off Price</th>
-              <th className="px-4 py-3 text-left">25% Price per Class</th>
+              <th className="px-4 py-3 text-left">20% off Price</th>
+              <th className="px-4 py-3 text-left">20% Price per Class</th>
             </tr>
           </thead>
           <tbody>
