@@ -15,8 +15,10 @@ export default function Price() {
   const reformerPackages = [
     { name: "Intro Reformer for New Students", classes: 1, price: 25, discount: false, hasFreeExtra: false },
     { name: "Reformer Drop-in Class", classes: 1, price: 40, discount: false, hasFreeExtra: false },
+    { name: "Private Reformer Session (1-on-1)", classes: 1, price: 85, discount: false, hasFreeExtra: false },
     { name: "5 Reformer Class Package", classes: 5, price: 190, discount: true, hasFreeExtra: false },
     { name: "10 Reformer Class Package", classes: 10, price: 340, discount: true, hasFreeExtra: false },
+   
   ];
 
   const formatCAD = (n) =>
