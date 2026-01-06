@@ -1,5 +1,5 @@
 export default function Price() {
-  const MAT_DISCOUNT = 0.2;
+  const MAT_DISCOUNT = 0.15;
   const REFORMER_DISCOUNT = 0.15;
   const PUNCHPASS_URL = "https://app.punchpass.com/org/20290/passes";
 
@@ -58,20 +58,20 @@ export default function Price() {
       <h2 className="text-3xl tracking-widest mb-2">MAT CLASS PACKAGES</h2>
 
       <p className="text-gray-600 mb-4 text-center">
-        Missed the opening promo?{" "}
+        Missed the New Year promo?{" "}
         <span className="font-semibold">
-          Don’t miss this one — Christmas & New Year discounts are here! ✨
+          Don’t miss this one — Special discounts are here! ✨
         </span>
       </p>
 
       <p className="text-gray-600 mb-4 text-center font-semibold">
-        20% off all Mat Packages + 1 Extra Class • Valid until January 2nd, 2026
+        15% off all Mat Packages + 1 Extra Class • Limited time
       </p>
 
       <p className="text-gray-600 mb-10 text-center">
         Promo Code:{" "}
         <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
-          NEW2026
+          SPECIAL15
         </span>{" "}
         <span className="text-sm text-gray-500">(not valid for Intro Class)</span>
       </p>
