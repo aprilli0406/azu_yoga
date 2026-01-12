@@ -5,11 +5,26 @@ export default function Price() {
 
   const matPackages = [
     { name: "Intro Class for New Students", classes: 1, price: 9.98, discount: false, hasFreeExtra: false },
+
+   
+
     { name: "5 + 1 Mat Class Package", classes: 6, price: 150, discount: true, hasFreeExtra: true },
     { name: "10 + 1 Mat Class Package", classes: 11, price: 240, discount: true, hasFreeExtra: true },
     { name: "20 + 1 Mat Class Package", classes: 21, price: 390, discount: true, hasFreeExtra: true },
+
+    // ✅ Fixed typo: 4a90 -> 490
     { name: "30 + 1 Mat Class Package", classes: 31, price: 490, discount: true, hasFreeExtra: true },
+
     { name: "40 + 1 Mat Class Package", classes: 41, price: 545, discount: true, hasFreeExtra: true },
+     // ✅ Unlimited monthly passes (promo code NOT applicable)
+    { name: "Monthly Unlimited Mat Pass", classes: "Unlimited", price: 110, discount: false, hasFreeExtra: false },
+    {
+      name: "Monthly Unlimited Mat Pass (Students / Medical / Seniors)",
+      classes: "Unlimited",
+      price: 90,
+      discount: false,
+      hasFreeExtra: false,
+    },
   ];
 
   const reformerPackages = [
@@ -18,7 +33,6 @@ export default function Price() {
     { name: "Private Reformer Session (1-on-1)", classes: 1, price: 85, discount: false, hasFreeExtra: false },
     { name: "5 Reformer Class Package", classes: 5, price: 190, discount: true, hasFreeExtra: false },
     { name: "10 Reformer Class Package", classes: 10, price: 340, discount: true, hasFreeExtra: false },
-   
   ];
 
   const formatCAD = (n) =>
@@ -28,25 +42,31 @@ export default function Price() {
     }).format(n);
 
   const renderRows = (packages, discountRate) =>
+
     packages.map((pkg, i) => {
-      const paidClasses = pkg.hasFreeExtra ? (pkg.classes - 1 || pkg.classes) : pkg.classes;
-      const costPer = pkg.price / paidClasses;
+      const isUnlimited = typeof pkg.classes !== "number";
+
+      // For packages with a free extra class, "paid classes" should exclude the free one.
+      const paidClasses =
+        !isUnlimited && pkg.hasFreeExtra ? (pkg.classes - 1 || pkg.classes) : pkg.classes;
+
+      const costPer = isUnlimited ? "—" : formatCAD(pkg.price / paidClasses);
 
       const discounted = pkg.discount ? pkg.price * (1 - discountRate) : pkg.price;
-      const discountedPer = discounted / pkg.classes;
+      const discountedPer = isUnlimited ? "—" : formatCAD(discounted / pkg.classes);
 
       return (
         <tr key={pkg.name} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
           <td className="px-4 py-3 font-medium">{pkg.name}</td>
           <td className="px-4 py-3">{formatCAD(pkg.price)}</td>
-          <td className="px-4 py-3">{formatCAD(costPer)}</td>
+          <td className="px-4 py-3">{costPer}</td>
 
           <td className="px-4 py-3 text-[#5a3d36] font-semibold">
             {pkg.discount ? formatCAD(discounted) : "N/A"}
           </td>
 
           <td className="px-4 py-3 text-[#5a3d36]">
-            {pkg.discount ? formatCAD(discountedPer) : "N/A"}
+            {pkg.discount ? discountedPer : "N/A"}
           </td>
         </tr>
       );
@@ -59,9 +79,7 @@ export default function Price() {
 
       <p className="text-gray-600 mb-4 text-center">
         Missed the New Year promo?{" "}
-        <span className="font-semibold">
-          Don’t miss this one — Special discounts are here! ✨
-        </span>
+        <span className="font-semibold">Don’t miss this one — Special discounts are here! ✨</span>
       </p>
 
       <p className="text-gray-600 mb-4 text-center font-semibold">
@@ -73,7 +91,7 @@ export default function Price() {
         <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
           SPECIAL15
         </span>{" "}
-        <span className="text-sm text-gray-500">(not valid for Intro Class)</span>
+        <span className="text-sm text-gray-500">(not valid for Intro Class & Unlimited Monthly Pass)</span>
       </p>
 
       <div className="w-full max-w-5xl px-4 overflow-x-auto">
@@ -83,25 +101,27 @@ export default function Price() {
               <th className="px-4 py-3 text-left">Class Package</th>
               <th className="px-4 py-3 text-left">Regular Price</th>
               <th className="px-4 py-3 text-left">Price per Paid Class</th>
-              <th className="px-4 py-3 text-left">20% Off Price</th>
-              <th className="px-4 py-3 text-left">20% Price per Class</th>
+
+              {/* ✅ Updated from 20% -> 15% */}
+              <th className="px-4 py-3 text-left">15% Off Price</th>
+              <th className="px-4 py-3 text-left">15% Price per Class</th>
             </tr>
           </thead>
           <tbody>{renderRows(matPackages, MAT_DISCOUNT)}</tbody>
         </table>
       </div>
 
-      {/* ✅ UPDATED: Mat Terms */}
+      {/* ✅ Mat Terms */}
       <div className="w-full max-w-5xl px-4 mt-4">
         <div className="border border-gray-200 rounded-xl p-4 bg-gray-50">
           <p className="font-semibold text-gray-800 mb-2">Mat Class Terms & Conditions</p>
           <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-            <li>Grip socks (or regular socks) are required for Mat Pilates.</li> {/* ✅ UPDATED */}
+            <li>Grip socks (or regular socks) are required for Mat Pilates.</li>
             <li>12-hour cancellation notice is required.</li>
             <li>
               All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
               <strong>valid for 1 year</strong>.
-            </li> {/* ✅ UPDATED */}
+            </li>
           </ul>
         </div>
       </div>
@@ -109,9 +129,7 @@ export default function Price() {
       {/* ================= REFORMER PACKAGES ================= */}
       <h2 className="text-3xl tracking-widest mt-16 mb-2">REFORMER CLASS PACKAGES</h2>
 
-      <p className="text-gray-600 mb-6 text-center font-semibold">
-        15% off Reformer Packages • Limited time
-      </p>
+      <p className="text-gray-600 mb-6 text-center font-semibold">15% off Reformer Packages • Limited time</p>
       <p className="text-gray-600 mb-10 text-center">
         Promo Code:{" "}
         <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
@@ -135,7 +153,7 @@ export default function Price() {
         </table>
       </div>
 
-      {/* ✅ UPDATED: Reformer Terms */}
+      {/* ✅ Reformer Terms */}
       <div className="w-full max-w-5xl px-4 mt-4">
         <div className="border border-gray-200 rounded-xl p-4 bg-gray-50">
           <p className="font-semibold text-gray-800 mb-2">Reformer Terms & Conditions</p>
@@ -146,7 +164,7 @@ export default function Price() {
             <li>
               All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
               <strong>valid for 1 year</strong>.
-            </li> {/* ✅ UPDATED */}
+            </li>
           </ul>
         </div>
       </div>
