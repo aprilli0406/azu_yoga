@@ -19,7 +19,7 @@ export default function Price() {
      // ✅ Unlimited monthly passes (promo code NOT applicable)
     { name: "Monthly Unlimited Mat Pass", classes: "Unlimited", price: 110, discount: false, hasFreeExtra: false },
     {
-      name: "Monthly Unlimited Mat Pass (Students / Medical / Seniors)",
+      name: "Monthly Unlimited Mat Pass (Students / Medical / Seniors(65+))",
       classes: "Unlimited",
       price: 90,
       discount: false,
@@ -122,6 +122,19 @@ export default function Price() {
               All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
               <strong>valid for 1 year</strong>.
             </li>
+            <li>Student, Medical, and Senior memberships are available online. Valid ID required at first visit.</li>
+            <li>
+              <strong>Cancellation Policy</strong>
+              <ul className="list-disc ml-5 mt-2">
+                <li> 
+                  Monthly Members & 2-week Trial: If you need to cancel late or miss a class, a <strong>$15</strong> no-show/late cancellation fee may be charged <strong>only if the class is full or has a waitlist</strong>. 
+                </li>
+                <li>
+                  Package Pass Holders: A late cancellation or missed class will simply use <strong>one class pass</strong>.
+                </li>
+              </ul>
+            </li>
+
           </ul>
         </div>
       </div>
@@ -164,6 +177,15 @@ export default function Price() {
             <li>
               All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
               <strong>valid for 1 year</strong>.
+            </li>
+            <li>
+              <strong>Cancellation Policy</strong>
+              <ul className="list-disc ml-5 mt-2">
+                
+                <li>
+                  Package Pass Holders: A late cancellation or missed class will simply use <strong>one class pass</strong>.
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
