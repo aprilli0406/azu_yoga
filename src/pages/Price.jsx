@@ -17,7 +17,11 @@ export default function Price() {
 
     { name: "40 + 1 Mat Class Package", classes: 41, price: 545, discount: true, hasFreeExtra: true },
      // ✅ Unlimited monthly passes (promo code NOT applicable)
+    { name: "10-day Unlimited Mat Trial", classes: "Unlimited", price: 37, discount: false, hasFreeExtra: false },
+  
     { name: "Monthly Unlimited Mat Pass", classes: "Unlimited", price: 110, discount: false, hasFreeExtra: false },
+    
+    
     {
       name: "Monthly Unlimited Mat Pass (Students / Medical / Seniors(65+))",
       classes: "Unlimited",
@@ -127,7 +131,7 @@ export default function Price() {
               <strong>Cancellation Policy</strong>
               <ul className="list-disc ml-5 mt-2">
                 <li> 
-                  Monthly Members & 2-week Trial: If you need to cancel late or miss a class, a <strong>$15</strong> no-show/late cancellation fee may be charged <strong>only if the class is full or has a waitlist</strong>. 
+                  Monthly Members & 10-day Trial: If you need to cancel late or miss a class, a <strong>$15</strong> no-show/late cancellation fee may be charged <strong>only if the class is full or has a waitlist</strong>. 
                 </li>
                 <li>
                   Package Pass Holders: A late cancellation or missed class will simply use <strong>one class pass</strong>.
