@@ -26,7 +26,7 @@ const classesData = [
     title: "Reformer Pilates",
     description:
       "Resistance-based, full-body training using the reformer machine. Focuses on alignment, strength, and balance with individualized adjustments for every body.",
-    comingSoon: "Coming in December",
+    comingSoon: "Coming in February",
   },
 ];
 
