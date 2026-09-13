@@ -4,6 +4,7 @@ import Classes from "./pages/Classes";
 import Schedule from "./pages/Schedule";
 import Price from "./pages/Price";
 import Account from "./pages/Account";
+import CommentsQuestions from "./pages/CommentsQuestions";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -31,6 +32,8 @@ export default function App() {
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/price" element={<Price />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/contact" element={<CommentsQuestions />} />
+          <Route path="/comments-questions" element={<CommentsQuestions />} />
         </Routes>
       </main>
 

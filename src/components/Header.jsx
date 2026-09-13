@@ -3,7 +3,7 @@ import { useI18n } from "../i18n/I18nProvider";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-  const { locale, setLang, t } = useI18n();
+  const { locale, setLocale, t } = useI18n();
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
@@ -63,12 +63,16 @@ export default function Header() {
           <NavLink to="/account" className={(p) => linkClass(p)}>
             <span className="uppercase">{t("nav.account")}</span>
           </NavLink>
+
+          <NavLink to="/contact" className={(p) => linkClass(p)}>
+            <span className="uppercase">{t("nav.contact")}</span>
+          </NavLink>
         </div>
 
         {/* === Language Switch === */}
         <div className="flex items-center">
           <button
-            onClick={() => setLang(locale === "en" ? "fr" : "en")}
+            onClick={() => setLocale(locale === "en" ? "fr" : "en")}
             className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white hover:bg-white/20"
           >
             🌐 <span>{locale.toUpperCase()}</span>
@@ -94,6 +98,9 @@ export default function Header() {
             </NavLink>
             <NavLink to="/account" className={(p) => `py-2 ${linkClass(p)}`}>
               {t("nav.account")}
+            </NavLink>
+            <NavLink to="/contact" className={(p) => `py-2 ${linkClass(p)}`}>
+              {t("nav.contact")}
             </NavLink>
           </div>
         </div>
