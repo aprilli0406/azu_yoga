@@ -47,6 +47,35 @@ export const dict = {
       emailSubject: "Website message",
       mailNote: "Submitting opens your email app with this message ready to send.",
       mailReady: "Your email app should now be open. Review the message, then press Send.",
+      faqEyebrow: "Before you ask",
+      faqTitle: "General Q&A",
+      faqIntro: "Quick answers to some of the questions we hear most often.",
+      faqs: [
+        {
+          question: "How do I book a class?",
+          answer: "Visit the Schedule page, choose the class you would like to attend, and complete your booking through Punchpass.",
+        },
+        {
+          question: "What should I bring to class?",
+          answer: "Please bring your own yoga mat. Grip socks or regular socks are also required for Mat Pilates and Reformer Pilates.",
+        },
+        {
+          question: "What is the cancellation policy?",
+          answer: "Mat classes require 12 hours’ notice. Reformer classes require 24 hours’ notice. Late cancellations or missed classes may use a class pass or incur the applicable fee.",
+        },
+        {
+          question: "Which class is right for me?",
+          answer: "Yoga Flow and Vinyasa focus on movement and breath, Sound Healing & Meditation supports relaxation, and Pilates builds strength, control, and alignment. Send us a message if you would like help choosing.",
+        },
+        {
+          question: "How can I buy a class package?",
+          answer: "Open the Pricing page to compare available Mat and Reformer options, then select Buy Packages to purchase securely through Punchpass.",
+        },
+        {
+          question: "Where is Azu Studio located?",
+          answer: "We are located at 5173 Côte-des-Neiges, suite 4, Montréal, Québec H3T 1Y1.",
+        },
+      ],
     },
     footer: { rights: "All rights reserved." }
   },
@@ -96,8 +125,36 @@ export const dict = {
       emailSubject: "Message du site Web",
       mailNote: "Le formulaire ouvrira votre application de courriel avec le message prêt à envoyer.",
       mailReady: "Votre application de courriel devrait être ouverte. Vérifiez le message, puis appuyez sur Envoyer.",
+      faqEyebrow: "Avant de nous écrire",
+      faqTitle: "Questions générales",
+      faqIntro: "Des réponses rapides aux questions que nous recevons le plus souvent.",
+      faqs: [
+        {
+          question: "Comment réserver un cours?",
+          answer: "Consultez la page Horaire, choisissez le cours auquel vous souhaitez participer, puis terminez votre réservation sur Punchpass.",
+        },
+        {
+          question: "Que dois-je apporter au cours?",
+          answer: "Veuillez apporter votre propre tapis de yoga. Des chaussettes antidérapantes ou ordinaires sont également requises pour le Pilates au sol et sur Reformer.",
+        },
+        {
+          question: "Quelle est la politique d’annulation?",
+          answer: "Un préavis de 12 heures est requis pour les cours sur tapis et de 24 heures pour les cours sur Reformer. Une annulation tardive ou une absence peut utiliser un cours de votre forfait ou entraîner les frais applicables.",
+        },
+        {
+          question: "Quel cours me convient le mieux?",
+          answer: "Le Yoga Flow et le Vinyasa misent sur le mouvement et la respiration, la guérison sonore et la méditation favorisent la détente, et le Pilates développe la force, le contrôle et l’alignement. Écrivez-nous si vous souhaitez être conseillé.",
+        },
+        {
+          question: "Comment acheter un forfait de cours?",
+          answer: "Consultez la page Tarifs pour comparer les options de cours sur tapis et sur Reformer, puis sélectionnez Buy Packages pour effectuer votre achat sur Punchpass.",
+        },
+        {
+          question: "Où se trouve Azu Studio?",
+          answer: "Nous sommes situés au 5173, chemin de la Côte-des-Neiges, bureau 4, Montréal (Québec) H3T 1Y1.",
+        },
+      ],
     },
     footer: { rights: "Tous droits réservés." }
   }
 } as const;
-

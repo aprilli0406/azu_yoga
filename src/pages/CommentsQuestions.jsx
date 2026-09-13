@@ -6,6 +6,7 @@ const CONTACT_EMAIL = "info@azustudio.ca";
 export default function CommentsQuestions() {
   const { t } = useI18n();
   const [mailReady, setMailReady] = useState(false);
+  const faqs = t("contact.faqs");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -160,6 +161,47 @@ export default function CommentsQuestions() {
                 {mailReady ? t("contact.mailReady") : t("contact.mailNote")}
               </p>
             </form>
+          </div>
+        </div>
+
+        <div className="mt-16 md:mt-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#806657]">
+              {t("contact.faqEyebrow")}
+            </p>
+            <h2 className="mt-4 text-3xl font-light sm:text-4xl">
+              {t("contact.faqTitle")}
+            </h2>
+            <p className="mt-4 leading-7 text-[#302a22]/65">
+              {t("contact.faqIntro")}
+            </p>
+          </div>
+
+          <div className="mt-10 grid items-start gap-4 md:grid-cols-2">
+            {faqs.map((faq, index) => (
+              <details
+                key={faq.question}
+                className="group rounded-2xl border border-[#302a22]/10 bg-white p-6 shadow-sm transition open:border-[#d1b7a7] open:shadow-md"
+                open={index === 0}
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-5 font-semibold marker:content-none">
+                  <span>{faq.question}</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-[#806657] transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </summary>
+                <p className="mt-4 border-t border-[#302a22]/10 pt-4 text-sm leading-6 text-[#302a22]/65">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
