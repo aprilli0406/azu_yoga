@@ -1,20 +1,23 @@
 import { useI18n } from "../i18n/I18nProvider";
 
 const classesData = [
-  { key: "flow", image: "/images/class-yoga-flow.webp", intensity: 2 },
-  { key: "vinyasa", image: "/images/class-vinyasa.webp", intensity: 3 },
-  { key: "meditation", image: "/images/class-meditation.webp", intensity: 1 },
-  { key: "mat", image: "/images/class-mat-pilates.webp", intensity: 2 },
-  { key: "reformer", image: "/images/class-reformer.webp", intensity: 3 },
+  { key: "flow", image: "/images/class-yoga-flow.webp", intensityMin: 2, intensityMax: 2 },
+  { key: "vinyasa", image: "/images/class-vinyasa.webp", intensityMin: 3, intensityMax: 3 },
+  { key: "gentle", image: "/images/class-meditation.webp", intensityMin: 1, intensityMax: 2 },
+  { key: "mat", image: "/images/class-mat-pilates.webp", intensityMin: 2, intensityMax: 3 },
+  { key: "matBeginner", image: "/images/home-mat-pilates.webp", intensityMin: 1, intensityMax: 2 },
+  { key: "reformer", image: "/images/class-reformer.webp", intensityMin: 2, intensityMax: 3 },
 ];
 
-function IntensityMeter({ level }) {
+function IntensityMeter({ min, max }) {
   return (
     <span className="inline-flex items-end gap-1" aria-hidden="true">
       {[1, 2, 3].map((bar) => (
         <span
           key={bar}
-          className={`w-1.5 rounded-full ${bar <= level ? "bg-[#806657]" : "bg-[#302a22]/12"}`}
+          className={`w-1.5 rounded-full ${
+            bar <= min ? "bg-[#806657]" : bar <= max ? "bg-[#d1b7a7]" : "bg-[#302a22]/12"
+          }`}
           style={{ height: `${8 + bar * 3}px` }}
         />
       ))}
@@ -45,9 +48,7 @@ export default function Classes() {
         {classesData.map((item, index) => (
           <article
             key={item.key}
-            className={`group overflow-hidden rounded-[1.75rem] border border-[#302a22]/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#302a22]/10 ${
-              index === classesData.length - 1 ? "md:col-span-2 lg:col-span-1" : ""
-            }`}
+            className="group overflow-hidden rounded-[1.75rem] border border-[#302a22]/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#302a22]/10"
           >
             <div className="aspect-[4/3] overflow-hidden bg-[#d1b7a7]/30">
               <img
@@ -86,7 +87,7 @@ export default function Classes() {
                     {t(`classes.${item.key}Intensity`)}
                   </p>
                 </div>
-                <IntensityMeter level={item.intensity} />
+                <IntensityMeter min={item.intensityMin} max={item.intensityMax} />
               </div>
 
               <div className="mt-5">
