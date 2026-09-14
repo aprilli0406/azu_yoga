@@ -5,6 +5,7 @@ import Schedule from "./pages/Schedule";
 import Price from "./pages/Price";
 import Account from "./pages/Account";
 import CommentsQuestions from "./pages/CommentsQuestions";
+import BookingDemo from "./pages/BookingDemo";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/contact" element={<CommentsQuestions />} />
           <Route path="/comments-questions" element={<CommentsQuestions />} />
+          <Route path="/booking-demo" element={<BookingDemo />} />
         </Routes>
       </main>
 
