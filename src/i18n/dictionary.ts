@@ -52,20 +52,24 @@ export const dict = {
       faqIntro: "Quick answers to some of the questions we hear most often.",
       faqs: [
         {
-          question: "How do I book a class?",
-          answer: "Visit the Schedule page, choose the class you would like to attend, and complete your booking through Punchpass.",
+          question: "Which classes are included in Mat packages and the unlimited monthly subscription?",
+          answer: "Mat class packages and the unlimited monthly subscription include all Yoga and Mat Pilates classes. Reformer Pilates classes are not included.",
+        },
+        {
+          question: "Which class should I take as a beginner?",
+          answer: "Yoga Beginner and Pilates Beginner are both great places to start. You are also welcome to try any all-level class that fits your schedule. It may feel a little challenging at first, and you can always work at your own pace.",
+        },
+        {
+          question: "What is the reservation and cancellation policy?",
+          answer: "Please reserve at least 6 hours before class so we can best determine whether the class can go ahead. If fewer than 3 people are registered, the class will be cancelled. For cancellations, Mat classes require 12 hours’ notice and Reformer classes require 24 hours’ notice. Late cancellations or missed classes may use a class pass or incur the applicable fee.",
         },
         {
           question: "What should I bring to class?",
-          answer: "Please bring your own yoga mat. Grip socks or regular socks are also required for Mat Pilates and Reformer Pilates.",
+          answer: "Please bring your own yoga mat. If you do not have one, a mat is available to rent for $3. Grip socks or regular socks are also required for Mat Pilates and Reformer Pilates.",
         },
         {
-          question: "What is the cancellation policy?",
-          answer: "Mat classes require 12 hours’ notice. Reformer classes require 24 hours’ notice. Late cancellations or missed classes may use a class pass or incur the applicable fee.",
-        },
-        {
-          question: "Which class is right for me?",
-          answer: "Yoga Flow and Vinyasa focus on movement and breath, Sound Healing & Meditation supports relaxation, and Pilates builds strength, control, and alignment. Send us a message if you would like help choosing.",
+          question: "How do I book a class?",
+          answer: "Visit the Schedule page, choose the class you would like to attend, and complete your booking through Punchpass.",
         },
         {
           question: "How can I buy a class package?",
@@ -130,20 +134,24 @@ export const dict = {
       faqIntro: "Des réponses rapides aux questions que nous recevons le plus souvent.",
       faqs: [
         {
-          question: "Comment réserver un cours?",
-          answer: "Consultez la page Horaire, choisissez le cours auquel vous souhaitez participer, puis terminez votre réservation sur Punchpass.",
+          question: "Quels cours sont inclus dans les forfaits sur tapis et l’abonnement mensuel illimité?",
+          answer: "Les forfaits de cours sur tapis et l’abonnement mensuel illimité donnent accès à tous les cours de yoga et de Pilates au sol. Les cours de Pilates sur Reformer ne sont pas inclus.",
+        },
+        {
+          question: "Quel cours choisir pour débuter?",
+          answer: "Yoga Beginner et Pilates Beginner sont d’excellents points de départ. Vous pouvez aussi essayer tout cours tous niveaux qui convient à votre horaire. Le cours peut sembler un peu exigeant au début, mais vous pouvez toujours progresser à votre rythme.",
+        },
+        {
+          question: "Quelle est la politique de réservation et d’annulation?",
+          answer: "Veuillez réserver au moins 6 heures avant le cours afin de nous aider à déterminer s’il peut avoir lieu. Si moins de 3 personnes sont inscrites, le cours sera annulé. Pour les annulations, un préavis de 12 heures est requis pour les cours sur tapis et de 24 heures pour les cours sur Reformer. Une annulation tardive ou une absence peut utiliser un cours de votre forfait ou entraîner les frais applicables.",
         },
         {
           question: "Que dois-je apporter au cours?",
-          answer: "Veuillez apporter votre propre tapis de yoga. Des chaussettes antidérapantes ou ordinaires sont également requises pour le Pilates au sol et sur Reformer.",
+          answer: "Veuillez apporter votre propre tapis de yoga. Si vous n’en avez pas, vous pouvez en louer un pour 3 $. Des chaussettes antidérapantes ou ordinaires sont également requises pour le Pilates au sol et sur Reformer.",
         },
         {
-          question: "Quelle est la politique d’annulation?",
-          answer: "Un préavis de 12 heures est requis pour les cours sur tapis et de 24 heures pour les cours sur Reformer. Une annulation tardive ou une absence peut utiliser un cours de votre forfait ou entraîner les frais applicables.",
-        },
-        {
-          question: "Quel cours me convient le mieux?",
-          answer: "Le Yoga Flow et le Vinyasa misent sur le mouvement et la respiration, la guérison sonore et la méditation favorisent la détente, et le Pilates développe la force, le contrôle et l’alignement. Écrivez-nous si vous souhaitez être conseillé.",
+          question: "Comment réserver un cours?",
+          answer: "Consultez la page Horaire, choisissez le cours auquel vous souhaitez participer, puis terminez votre réservation sur Punchpass.",
         },
         {
           question: "Comment acheter un forfait de cours?",

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useI18n } from "../i18n/I18nProvider";
 
-const CONTACT_EMAIL = "info@azustudio.ca";
+const PUBLIC_CONTACT_EMAIL = "info@azustudio.ca";
+const MESSAGE_EMAIL = ["aprilli199500", "gmail.com"].join("@");
 
 export default function CommentsQuestions() {
   const { t } = useI18n();
@@ -26,7 +27,7 @@ export default function CommentsQuestions() {
     ].join("\n");
 
     setMailReady(true);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+    window.location.href = `mailto:${MESSAGE_EMAIL}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
   };
@@ -64,7 +65,7 @@ export default function CommentsQuestions() {
                   {t("contact.emailUs")}
                 </p>
                 <a
-                  href={`mailto:${CONTACT_EMAIL}`}
+                  href={`mailto:${PUBLIC_CONTACT_EMAIL}`}
                   className="mt-3 inline-flex items-center gap-3 text-lg text-white transition hover:text-[#d1b7a7]"
                 >
                   <svg
@@ -78,7 +79,7 @@ export default function CommentsQuestions() {
                     <path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Z" />
                     <path d="m4 7 8 6 8-6" />
                   </svg>
-                  {CONTACT_EMAIL}
+                  {PUBLIC_CONTACT_EMAIL}
                 </a>
               </div>
             </div>
