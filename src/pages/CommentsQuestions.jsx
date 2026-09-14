@@ -3,33 +3,55 @@ import { useI18n } from "../i18n/I18nProvider";
 
 const PUBLIC_CONTACT_EMAIL = "info@azustudio.ca";
 const MESSAGE_EMAIL = ["aprilli199500", "gmail.com"].join("@");
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${MESSAGE_EMAIL}`;
 
 export default function CommentsQuestions() {
   const { t } = useI18n();
-  const [mailReady, setMailReady] = useState(false);
+  const [status, setStatus] = useState("idle");
   const faqs = t("contact.faqs");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const formElement = event.currentTarget;
     const form = new FormData(event.currentTarget);
     const name = form.get("name");
     const email = form.get("email");
     const topic = form.get("topic");
     const message = form.get("message");
     const subject = `${t("contact.emailSubject")} — ${topic}`;
-    const body = [
-      `${t("contact.nameLabel")}: ${name}`,
-      `${t("contact.emailLabel")}: ${email}`,
-      `${t("contact.topicLabel")}: ${topic}`,
-      "",
-      message,
-    ].join("\n");
 
-    setMailReady(true);
-    window.location.href = `mailto:${MESSAGE_EMAIL}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    setStatus("submitting");
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          topic,
+          message,
+          _subject: subject,
+          _template: "table",
+          _honey: form.get("company"),
+          _url: window.location.href,
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error(result.message || "Form submission failed");
+      }
+
+      formElement.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputClass =
@@ -92,6 +114,13 @@ export default function CommentsQuestions() {
             </p>
 
             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <label>
+                  Company
+                  <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="text-sm font-medium">
                   {t("contact.nameLabel")}
@@ -143,9 +172,10 @@ export default function CommentsQuestions() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#302a22] px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#4a4136] focus:outline-none focus:ring-2 focus:ring-[#806657] focus:ring-offset-2 sm:w-auto"
+                disabled={status === "submitting"}
+                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#302a22] px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#4a4136] focus:outline-none focus:ring-2 focus:ring-[#806657] focus:ring-offset-2 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
               >
-                {t("contact.submit")}
+                {status === "submitting" ? t("contact.submitting") : t("contact.submit")}
                 <svg
                   viewBox="0 0 24 24"
                   className="h-4 w-4"
@@ -158,9 +188,26 @@ export default function CommentsQuestions() {
                 </svg>
               </button>
 
-              <p className="text-xs leading-5 text-[#302a22]/55" aria-live="polite">
-                {mailReady ? t("contact.mailReady") : t("contact.mailNote")}
-              </p>
+              <div className="min-h-6" aria-live="polite">
+                {status === "success" && (
+                  <p className="rounded-xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+                    {t("contact.successMessage")}
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
+                    {t("contact.errorMessage")} {" "}
+                    <a className="underline" href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>
+                      {PUBLIC_CONTACT_EMAIL}
+                    </a>
+                  </p>
+                )}
+                {status === "idle" && (
+                  <p className="text-xs leading-5 text-[#302a22]/55">
+                    {t("contact.formNote")}
+                  </p>
+                )}
+              </div>
             </form>
           </div>
         </div>
