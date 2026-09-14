@@ -24,7 +24,7 @@ export default function Header() {
         <button
           className="md:hidden inline-flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-white/10 border border-white/20"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={t("nav.menu")}
         >
           <span className="block w-5 h-0.5 bg-white mb-1.5"></span>
           <span className="block w-5 h-0.5 bg-white mb-1.5"></span>

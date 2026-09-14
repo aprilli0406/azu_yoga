@@ -1,212 +1,159 @@
+import { useI18n } from "../i18n/I18nProvider";
+
+const MAT_DISCOUNT = 0.15;
+const REFORMER_DISCOUNT = 0.15;
+const PUNCHPASS_URL = "https://app.punchpass.com/org/20290/passes";
+
+const matPackages = [
+  { nameKey: "introMat", classes: 1, price: 9.98, discount: false, hasFreeExtra: false },
+  { nameKey: "mat5", classes: 6, price: 150, discount: true, hasFreeExtra: true },
+  { nameKey: "mat10", classes: 11, price: 240, discount: true, hasFreeExtra: true },
+  { nameKey: "mat20", classes: 21, price: 390, discount: true, hasFreeExtra: true },
+  { nameKey: "mat30", classes: 31, price: 490, discount: true, hasFreeExtra: true },
+  { nameKey: "mat40", classes: 41, price: 545, discount: true, hasFreeExtra: true },
+  { nameKey: "trial", classes: "unlimited", price: 37, discount: false, hasFreeExtra: false },
+  { nameKey: "monthly", classes: "unlimited", price: 110, discount: false, hasFreeExtra: false },
+  { nameKey: "monthlyReduced", classes: "unlimited", price: 90, discount: false, hasFreeExtra: false },
+];
+
+const reformerPackages = [
+  { nameKey: "introReformer", classes: 1, price: 25, discount: false, hasFreeExtra: false },
+  { nameKey: "reformerDropIn", classes: 1, price: 40, discount: false, hasFreeExtra: false },
+  { nameKey: "privateReformer", classes: 1, price: 85, discount: false, hasFreeExtra: false },
+  { nameKey: "reformer5", classes: 5, price: 190, discount: true, hasFreeExtra: false },
+  { nameKey: "reformer10", classes: 10, price: 340, discount: true, hasFreeExtra: false },
+];
+
 export default function Price() {
-  const MAT_DISCOUNT = 0.15;
-  const REFORMER_DISCOUNT = 0.15;
-  const PUNCHPASS_URL = "https://app.punchpass.com/org/20290/passes";
+  const { locale, t } = useI18n();
 
-  const matPackages = [
-    { name: "Intro Class for New Students", classes: 1, price: 9.98, discount: false, hasFreeExtra: false },
-
-   
-
-    { name: "5 + 1 Mat Class Package", classes: 6, price: 150, discount: true, hasFreeExtra: true },
-    { name: "10 + 1 Mat Class Package", classes: 11, price: 240, discount: true, hasFreeExtra: true },
-    { name: "20 + 1 Mat Class Package", classes: 21, price: 390, discount: true, hasFreeExtra: true },
-
-    // ✅ Fixed typo: 4a90 -> 490
-    { name: "30 + 1 Mat Class Package", classes: 31, price: 490, discount: true, hasFreeExtra: true },
-
-    { name: "40 + 1 Mat Class Package", classes: 41, price: 545, discount: true, hasFreeExtra: true },
-     // ✅ Unlimited monthly passes (promo code NOT applicable)
-    { name: "10-day Unlimited Mat Trial", classes: "Unlimited", price: 37, discount: false, hasFreeExtra: false },
-  
-    { name: "Monthly Unlimited Mat Pass", classes: "Unlimited", price: 110, discount: false, hasFreeExtra: false },
-    
-    
-    {
-      name: "Monthly Unlimited Mat Pass (Students / Medical / Seniors(65+))",
-      classes: "Unlimited",
-      price: 90,
-      discount: false,
-      hasFreeExtra: false,
-    },
-  ];
-
-  const reformerPackages = [
-    { name: "Intro Reformer for New Students", classes: 1, price: 25, discount: false, hasFreeExtra: false },
-    { name: "Reformer Drop-in Class", classes: 1, price: 40, discount: false, hasFreeExtra: false },
-    { name: "Private Reformer Session (1-on-1)", classes: 1, price: 85, discount: false, hasFreeExtra: false },
-    { name: "5 Reformer Class Package", classes: 5, price: 190, discount: true, hasFreeExtra: false },
-    { name: "10 Reformer Class Package", classes: 10, price: 340, discount: true, hasFreeExtra: false },
-  ];
-
-  const formatCAD = (n) =>
-    new Intl.NumberFormat("en-CA", {
+  const formatCAD = (value) =>
+    new Intl.NumberFormat(locale === "fr" ? "fr-CA" : "en-CA", {
       style: "currency",
       currency: "CAD",
-    }).format(n);
+    }).format(value);
 
   const renderRows = (packages, discountRate) =>
-
-    packages.map((pkg, i) => {
+    packages.map((pkg, index) => {
       const isUnlimited = typeof pkg.classes !== "number";
-
-      // For packages with a free extra class, "paid classes" should exclude the free one.
-      const paidClasses =
-        !isUnlimited && pkg.hasFreeExtra ? (pkg.classes - 1 || pkg.classes) : pkg.classes;
-
+      const paidClasses = !isUnlimited && pkg.hasFreeExtra ? pkg.classes - 1 : pkg.classes;
       const costPer = isUnlimited ? "—" : formatCAD(pkg.price / paidClasses);
-
-      const discounted = pkg.discount ? pkg.price * (1 - discountRate) : pkg.price;
+      const discounted = pkg.price * (1 - discountRate);
       const discountedPer = isUnlimited ? "—" : formatCAD(discounted / pkg.classes);
 
       return (
-        <tr key={pkg.name} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-          <td className="px-4 py-3 font-medium">{pkg.name}</td>
-          <td className="px-4 py-3">{formatCAD(pkg.price)}</td>
-          <td className="px-4 py-3">{costPer}</td>
-
-          <td className="px-4 py-3 text-[#5a3d36] font-semibold">
-            {pkg.discount ? formatCAD(discounted) : "N/A"}
+        <tr key={pkg.nameKey} className={index % 2 === 0 ? "bg-white" : "bg-[#f7f3ef]/65"}>
+          <td className="px-4 py-3 font-medium">{t(`pricing.packages.${pkg.nameKey}`)}</td>
+          <td className="px-4 py-3 whitespace-nowrap">{formatCAD(pkg.price)}</td>
+          <td className="px-4 py-3 whitespace-nowrap">{costPer}</td>
+          <td className="px-4 py-3 whitespace-nowrap font-semibold text-[#5a3d36]">
+            {pkg.discount ? formatCAD(discounted) : t("pricing.notApplicable")}
           </td>
-
-          <td className="px-4 py-3 text-[#5a3d36]">
-            {pkg.discount ? discountedPer : "N/A"}
+          <td className="px-4 py-3 whitespace-nowrap text-[#5a3d36]">
+            {pkg.discount ? discountedPer : t("pricing.notApplicable")}
           </td>
         </tr>
       );
     });
 
-  return (
-    <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center py-10">
-      {/* ================= MAT PACKAGES ================= */}
-      <h2 className="text-3xl tracking-widest mb-2">MAT CLASS PACKAGES</h2>
-
-      <p className="text-gray-600 mb-4 text-center">
-        Missed the New Year promo?{" "}
-        <span className="font-semibold">Don’t miss this one — Special discounts are here! ✨</span>
-      </p>
-
-      <p className="text-gray-600 mb-4 text-center font-semibold">
-        15% off all Mat Packages + 1 Extra Class • Limited time
-      </p>
-
-      <p className="text-gray-600 mb-10 text-center">
-        Promo Code:{" "}
-        <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
-          SPECIAL15
-        </span>{" "}
-        <span className="text-sm text-gray-500">(not valid for Intro Class & Unlimited Monthly Pass)</span>
-      </p>
-
-      <div className="w-full max-w-5xl px-4 overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-xl">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-4 py-3 text-left">Class Package</th>
-              <th className="px-4 py-3 text-left">Regular Price</th>
-              <th className="px-4 py-3 text-left">Price per Paid Class</th>
-
-              {/* ✅ Updated from 20% -> 15% */}
-              <th className="px-4 py-3 text-left">15% Off Price</th>
-              <th className="px-4 py-3 text-left">15% Price per Class</th>
-            </tr>
-          </thead>
-          <tbody>{renderRows(matPackages, MAT_DISCOUNT)}</tbody>
-        </table>
-      </div>
-
-      {/* ✅ Mat Terms */}
-      <div className="w-full max-w-5xl px-4 mt-4">
-        <div className="border border-gray-200 rounded-xl p-4 bg-gray-50">
-          <p className="font-semibold text-gray-800 mb-2">Mat Class Terms & Conditions</p>
-          <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-            <li>Grip socks (or regular socks) are required for Mat Pilates.</li>
-            <li>12-hour cancellation notice is required.</li>
-            <li>
-              All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
-              <strong>valid for 1 year</strong>.
-            </li>
-            <li>Student, Medical, and Senior memberships are available online. Valid ID required at first visit.</li>
-            <li>
-              <strong>Cancellation Policy</strong>
-              <ul className="list-disc ml-5 mt-2">
-                <li> 
-                  Monthly Members & 10-day Trial: If you need to cancel late or miss a class, a <strong>$15</strong> no-show/late cancellation fee may be charged <strong>only if the class is full or has a waitlist</strong>. 
-                </li>
-                <li>
-                  Package Pass Holders: A late cancellation or missed class will simply use <strong>one class pass</strong>.
-                </li>
-              </ul>
-            </li>
-
-          </ul>
-        </div>
-      </div>
-
-      {/* ================= REFORMER PACKAGES ================= */}
-      <h2 className="text-3xl tracking-widest mt-16 mb-2">REFORMER CLASS PACKAGES</h2>
-
-      <p className="text-gray-600 mb-6 text-center font-semibold">15% off Reformer Packages • Limited time</p>
-      <p className="text-gray-600 mb-10 text-center">
-        Promo Code:{" "}
-        <span className="font-semibold bg-rose-100 text-rose-800 px-3 py-1 rounded-md">
-          REFORMER2026
-        </span>{" "}
-        <span className="text-sm text-gray-500">(not valid for Intro & Drop-in Class)</span>
-      </p>
-
-      <div className="w-full max-w-5xl px-4 overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-xl">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-4 py-3 text-left">Class Package</th>
-              <th className="px-4 py-3 text-left">Regular Price</th>
-              <th className="px-4 py-3 text-left">Price per Class</th>
-              <th className="px-4 py-3 text-left">15% Off Price</th>
-              <th className="px-4 py-3 text-left">15% Price per Class</th>
-            </tr>
-          </thead>
-          <tbody>{renderRows(reformerPackages, REFORMER_DISCOUNT)}</tbody>
-        </table>
-      </div>
-
-      {/* ✅ Reformer Terms */}
-      <div className="w-full max-w-5xl px-4 mt-4">
-        <div className="border border-gray-200 rounded-xl p-4 bg-gray-50">
-          <p className="font-semibold text-gray-800 mb-2">Reformer Terms & Conditions</p>
-          <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-            <li>Each class is 60 minutes long and provides a complete full-body workout.</li>
-            <li>Grip socks (or regular socks) are required.</li>
-            <li>24-hour cancellation notice is required.</li>
-            <li>
-              All packages are <strong>non-refundable</strong>, <strong>non-transferable</strong>, and{" "}
-              <strong>valid for 1 year</strong>.
-            </li>
-            <li>
-              <strong>Cancellation Policy</strong>
-              <ul className="list-disc ml-5 mt-2">
-                
-                <li>
-                  Package Pass Holders: A late cancellation or missed class will simply use <strong>one class pass</strong>.
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <a
-        href={PUNCHPASS_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-10 inline-block bg-black text-white text-sm font-semibold tracking-widest px-8 py-3 rounded-xl hover:opacity-90"
-      >
-        BUY PACKAGES
-      </a>
-
-      <p className="mt-6 text-base text-gray-700 font-medium">
-        🎁 Gift cards available — perfect for yoga & Pilates lovers!
-      </p>
+  const PricingTable = ({ packages, discountRate, paidColumn }) => (
+    <div className="w-full overflow-x-auto rounded-2xl border border-[#302a22]/10 bg-white shadow-sm">
+      <table className="min-w-full">
+        <thead className="bg-[#302a22] text-white">
+          <tr>
+            <th className="px-4 py-4 text-left text-xs uppercase tracking-[0.12em]">{t("pricing.packageColumn")}</th>
+            <th className="px-4 py-4 text-left text-xs uppercase tracking-[0.12em]">{t("pricing.regularPriceColumn")}</th>
+            <th className="px-4 py-4 text-left text-xs uppercase tracking-[0.12em]">{t(paidColumn)}</th>
+            <th className="px-4 py-4 text-left text-xs uppercase tracking-[0.12em]">{t("pricing.discountPriceColumn")}</th>
+            <th className="px-4 py-4 text-left text-xs uppercase tracking-[0.12em]">{t("pricing.discountClassColumn")}</th>
+          </tr>
+        </thead>
+        <tbody>{renderRows(packages, discountRate)}</tbody>
+      </table>
     </div>
+  );
+
+  return (
+    <main className="min-h-screen bg-[#f7f3ef] px-5 py-14 text-[#302a22] sm:px-6 md:py-20">
+      <section className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <h1 className="text-3xl font-light uppercase tracking-[0.12em] sm:text-4xl">{t("pricing.matHeading")}</h1>
+          <p className="mt-4 text-[#302a22]/62">
+            {t("pricing.promoIntro")} <span className="font-semibold text-[#302a22]">{t("pricing.promoHighlight")}</span>
+          </p>
+          <p className="mt-3 font-semibold text-[#5f493e]">{t("pricing.matPromo")}</p>
+          <p className="mt-5">
+            {t("pricing.promoCode")}:{" "}
+            <span className="rounded-md bg-rose-100 px-3 py-1 font-semibold text-rose-800">SPECIAL15</span>{" "}
+            <span className="text-sm text-[#302a22]/50">({t("pricing.matPromoNote")})</span>
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <PricingTable packages={matPackages} discountRate={MAT_DISCOUNT} paidColumn="pricing.paidClassColumn" />
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-[#302a22]/10 bg-white p-5 sm:p-6">
+          <h2 className="font-semibold">{t("pricing.matTermsTitle")}</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-[#302a22]/65 marker:text-[#806657]">
+            <li>{t("pricing.matGrip")}</li>
+            <li>{t("pricing.matCancellationNotice")}</li>
+            <li>{t("pricing.packageTerms")}</li>
+            <li>{t("pricing.eligibility")}</li>
+            <li>
+              <strong className="text-[#302a22]">{t("pricing.cancellationPolicy")}</strong>
+              <ul className="mt-2 list-disc space-y-2 pl-5 marker:text-[#806657]">
+                <li>{t("pricing.monthlyCancellation")}</li>
+                <li>{t("pricing.packageCancellation")}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-20 max-w-6xl">
+        <div className="text-center">
+          <h2 className="text-3xl font-light uppercase tracking-[0.12em] sm:text-4xl">{t("pricing.reformerHeading")}</h2>
+          <p className="mt-4 font-semibold text-[#5f493e]">{t("pricing.reformerPromo")}</p>
+          <p className="mt-5">
+            {t("pricing.promoCode")}:{" "}
+            <span className="rounded-md bg-rose-100 px-3 py-1 font-semibold text-rose-800">REFORMER2026</span>{" "}
+            <span className="text-sm text-[#302a22]/50">({t("pricing.reformerPromoNote")})</span>
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <PricingTable packages={reformerPackages} discountRate={REFORMER_DISCOUNT} paidColumn="pricing.classPriceColumn" />
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-[#302a22]/10 bg-white p-5 sm:p-6">
+          <h2 className="font-semibold">{t("pricing.reformerTermsTitle")}</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-[#302a22]/65 marker:text-[#806657]">
+            <li>{t("pricing.reformerDuration")}</li>
+            <li>{t("pricing.reformerSocks")}</li>
+            <li>{t("pricing.reformerCancellationNotice")}</li>
+            <li>{t("pricing.packageTerms")}</li>
+            <li>
+              <strong className="text-[#302a22]">{t("pricing.cancellationPolicy")}</strong>
+              <ul className="mt-2 list-disc pl-5 marker:text-[#806657]">
+                <li>{t("pricing.packageCancellation")}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center">
+        <a
+          href={PUNCHPASS_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full bg-[#302a22] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#4a4136]"
+        >
+          {t("pricing.buyPackages")}
+        </a>
+        <p className="mt-6 text-center font-medium text-[#302a22]/70">🎁 {t("pricing.giftCards")}</p>
+      </div>
+    </main>
   );
 }

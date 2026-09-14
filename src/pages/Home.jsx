@@ -24,11 +24,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-[#f7f3ef] text-[#302a22]">
-      <div className="bg-[#806657] px-5 py-2.5 text-center text-xs font-medium uppercase tracking-[0.2em] text-white sm:text-sm">
-        {t("home.notice")}
-      </div>
-
-      <section className="mx-auto grid min-h-[calc(100svh-110px)] max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr]">
+      <section className="mx-auto grid min-h-[calc(100svh-88px)] max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr]">
         <div className="flex items-center px-6 py-16 sm:px-10 lg:px-16 xl:px-24">
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#806657] sm:text-sm">

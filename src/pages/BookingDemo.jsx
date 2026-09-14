@@ -76,6 +76,7 @@ const copy = {
     demoBadge: "Demo mode · No real booking or payment",
     back: "Back to current schedule",
     schedule: "Upcoming classes",
+    classesCount: "Classes",
     scheduleIntro: "Choose a class to reserve a spot or join its waiting list.",
     spot: "spot left",
     spots: "spots left",
@@ -122,6 +123,7 @@ const copy = {
     demoBadge: "Mode démo · Aucune réservation ni aucun paiement réel",
     back: "Retour à l’horaire actuel",
     schedule: "Cours à venir",
+    classesCount: "Cours",
     scheduleIntro: "Choisissez un cours pour réserver ou rejoindre la liste d’attente.",
     spot: "place restante",
     spots: "places restantes",
@@ -332,7 +334,7 @@ export default function BookingDemo() {
               </div>
               <div className="hidden rounded-2xl bg-white px-4 py-3 text-right shadow-sm sm:block">
                 <p className="text-2xl font-light">{sessions.length}</p>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#806657]">Classes</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#806657]">{c.classesCount}</p>
               </div>
             </div>
 

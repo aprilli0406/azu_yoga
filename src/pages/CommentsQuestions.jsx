@@ -248,6 +248,16 @@ export default function CommentsQuestions() {
                 <ul className="mt-4 border-t border-[#302a22]/10 pt-4 text-sm leading-6 text-[#302a22]/65">
                   <li className="ml-5 list-disc pl-1 marker:text-[#806657]">
                     {faq.answer}
+                    {faq.bullets && (
+                      <ul className="mt-3 list-disc space-y-2 pl-5 marker:text-[#806657]">
+                        {faq.bullets.map((bullet) => (
+                          <li key={bullet.label}>
+                            <strong className="text-[#302a22]">{bullet.label}:</strong>{" "}
+                            {bullet.text}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 </ul>
               </details>
