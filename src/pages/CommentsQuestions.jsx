@@ -245,9 +245,11 @@ export default function CommentsQuestions() {
                     <path d="m6 9 6 6 6-6" />
                   </svg>
                 </summary>
-                <p className="mt-4 border-t border-[#302a22]/10 pt-4 text-sm leading-6 text-[#302a22]/65">
-                  {faq.answer}
-                </p>
+                <ul className="mt-4 border-t border-[#302a22]/10 pt-4 text-sm leading-6 text-[#302a22]/65">
+                  <li className="ml-5 list-disc pl-1 marker:text-[#806657]">
+                    {faq.answer}
+                  </li>
+                </ul>
               </details>
             ))}
           </div>
