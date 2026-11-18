@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useI18n } from "../i18n/I18nProvider";
 
 const PUBLIC_CONTACT_EMAIL = "info@azustudio.ca";
-const MESSAGE_EMAIL = ["aprilli199500", "gmail.com"].join("@");
+const MESSAGE_EMAIL = ["aprillibai2023", "gmail.com"].join("@");
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${MESSAGE_EMAIL}`;
 
 export default function CommentsQuestions() {
