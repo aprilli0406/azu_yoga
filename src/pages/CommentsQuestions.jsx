@@ -112,6 +112,9 @@ export default function CommentsQuestions() {
             <p className="mt-2 text-sm leading-6 text-[#302a22]/60">
               {t("contact.formIntro")}
             </p>
+            <p className="mt-3 inline-flex rounded-full bg-[#f3e6de] px-4 py-2 text-sm font-medium text-[#6f4f43]">
+              {t("contact.responseTime")}
+            </p>
 
             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
               <div className="absolute -left-[9999px]" aria-hidden="true">
