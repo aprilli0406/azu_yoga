@@ -24,6 +24,37 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-[#f7f3ef] text-[#302a22]">
+      <section className="relative isolate overflow-hidden bg-gradient-to-r from-[#ff9caf] via-[#ffd36e] to-[#ffb3c7] px-5 py-12 text-[#302a22] sm:px-6 sm:py-16">
+        <div className="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-white/35 blur-3xl" aria-hidden="true" />
+        <div className="absolute -bottom-36 right-[12%] h-80 w-80 rounded-full bg-[#fff4cf]/55 blur-3xl" aria-hidden="true" />
+        <span className="absolute left-[4%] top-7 animate-pulse text-3xl text-white/85 sm:text-5xl" aria-hidden="true">✦</span>
+        <span className="absolute right-[6%] top-5 animate-pulse text-2xl text-white sm:text-4xl" aria-hidden="true">✧</span>
+        <span className="absolute bottom-7 left-[46%] animate-pulse text-xl text-white/80 sm:text-3xl" aria-hidden="true">✦</span>
+        <div className="relative mx-auto grid max-w-6xl gap-9 lg:grid-cols-[1fr_22rem] lg:items-center">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#302a22]/15 bg-white/55 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] shadow-sm backdrop-blur-sm">
+              <span aria-hidden="true">✦</span>
+              {t("home.anniversaryEyebrow")}
+              <span aria-hidden="true">✦</span>
+            </p>
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.025em] sm:text-5xl lg:text-6xl">{t("home.anniversaryTitle")}</h1>
+            <p className="mt-5 max-w-3xl text-base font-medium leading-7 text-[#302a22]/78 sm:text-lg">{t("home.anniversaryOffer")}</p>
+          </div>
+          <div className="rounded-[2rem] border border-white/45 bg-[#302a22] p-7 text-center text-white shadow-2xl shadow-[#8a4755]/30 ring-4 ring-white/25 sm:p-8">
+            <p className="text-4xl font-bold uppercase tracking-[-0.03em] text-[#ffd36e] sm:text-5xl">{t("home.anniversaryDiscount")}</p>
+            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#ffb3c7]">{t("home.anniversaryCodeLabel")}</p>
+            <p className="mt-2 rounded-xl border border-dashed border-white/45 bg-white/10 px-4 py-3 text-2xl font-semibold tracking-[0.18em]">AZULOVE</p>
+            <p className="mt-3 text-xs text-white/65">{t("home.anniversaryExpiry")}</p>
+            <Link
+              to="/price"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-[0.13em] text-[#302a22] transition hover:bg-[#ffd36e]"
+            >
+              {t("home.anniversaryCta")}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto grid min-h-[calc(100svh-88px)] max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr]">
         <div className="flex items-center px-6 py-16 sm:px-10 lg:px-16 xl:px-24">
           <div className="max-w-xl">
